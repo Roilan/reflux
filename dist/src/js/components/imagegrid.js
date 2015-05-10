@@ -21,7 +21,7 @@ var ImageGrid = React.createClass({
       return (
         <div>
           <div className="row">
-            <h1>working state</h1>
+
           </div>
         </div>
       )

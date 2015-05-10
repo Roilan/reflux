@@ -11,10 +11,6 @@ var ImageStore = Reflux.createStore({
     this.getList();
   },
 
-  funcCallback: function(data) {
-
-  },
-
   getList: function() {
    request({
      url: this.url,
@@ -26,8 +22,10 @@ var ImageStore = Reflux.createStore({
          images.push(item.data.thumbnail);
        });
 
-       this.imagelist = images;
-       this.trigger(this.imagelist);
+       this.trigger({
+         imagelist: images,
+         number: 1
+       });
      }.bind(this)
    });
   }
