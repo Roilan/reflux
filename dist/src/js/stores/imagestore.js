@@ -5,20 +5,28 @@ var ImageActions = require('../actions/imageactions');
 var ImageStore = Reflux.createStore({
   listenables: [ImageActions],
   imagelist: [],
-  url: '/dist/src/js/api.json',//'http://www.reddit.com/r/aww/.json=',
+  url: 'http://www.reddit.com/r/aww/.json?jsonp=',
 
   init: function() {
     this.getList();
   },
 
+  funcCallback: function(data) {
+
+  },
+
   getList: function() {
    request({
      url: this.url,
-     dataType: 'jsonp',
-     success: function(data) {
-       console.log('working');
+     method: 'GET',
+     crossOrigin: true,
+     success: function(response) {
+       var images = [];
+       response.data.children.forEach(function(item) {
+         images.push(item.data.thumbnail);
+       });
 
-       this.imagelist = data[0];
+       this.imagelist = images;
        this.trigger(this.imagelist);
      }.bind(this)
    });
