@@ -12,22 +12,22 @@ var ImageStore = Reflux.createStore({
   },
 
   getList: function() {
-   request({
+    request({
      url: this.url,
      method: 'GET',
      crossOrigin: true,
      success: function(response) {
        var images = [];
        response.data.children.forEach(function(item) {
-         images.push(item.data.thumbnail);
+         images.push({
+           thumbnail: item.data.thumbnail,
+           url: 'http://reddit.com' + item.data.permalink
+         });
        });
 
-       this.trigger({
-         imagelist: images,
-         number: 1
-       });
+       this.trigger({imagelist: images});
      }.bind(this)
-   });
+    });
   }
 });
 

@@ -7,8 +7,12 @@ var Home = React.createClass({
     return (
       <div>
         <h1>HomePage</h1>
-        <button className='btn btn-primary' onClick={ImageActions.getList}>Refresh list</button>
-        <ImageGrid></ImageGrid>
+        <button
+          className='btn btn-primary'
+          onClick={ImageActions.getList}>
+          Refresh list
+        </button>
+        <ImageGrid />
       </div>
     )
   }
